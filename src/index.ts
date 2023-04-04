@@ -1,32 +1,25 @@
-// let person = {
-//    name: 'John',
-//    email: 'john@example.com',
-//    greet: () => console.log(`Hello ${person.name}`),
-// };
-// console.log(`Hello ${person.name}`);
-
-//Creating instance of class
-class Person {
+class User {
    name: string;
    email: string;
-//'this' keyword used in the classs refers to the class to make the properties available in the constructor as well.
+   age: number;
 
-   constructor(name: string, email: string){
+   constructor(name: string, email: string, age: number) {
       this.name = name;
       this.email = email;
-      // console.log("name: " + this.name);
-      // console.log("email: " + this.email);
-   }
-   greet() {
-      return `Hello ${this.name}`;
+      this.age = age;
    }
 }
+//'extends' keyword is used to inheriit properties from a parent class
 
-const person = new Person('John', 'john@email.com');
-const person2 = new Person('Mark', 'mark@email.com');
-console.log(person);
-console.log(person2);
+class AdminUser extends User {
+   isAdmin: boolean = true;
+}
 
+const user: User = new User("John", "john@email.com", 23);
+const admin: AdminUser = new AdminUser("Danny", "dannyboy@email.com", 34)
 
-console.log(person.greet());
-console.log(person2.greet());
+console.log(user)
+console.log(admin)
+
+//the result of the expression shows that the user properties are inherited from the user class 
+//and for the admin, there is an additional property 'isAdmin' which was included in the properties
