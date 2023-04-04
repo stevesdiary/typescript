@@ -1,6 +1,6 @@
 //Introduction to Accessors and Mutators (the 'getters' and 'setters')
 class Person {
-   private _age: number | undefined;
+   private _age: number |undefined;
    constructor(protected name: string) {
 }
    public getName(){
@@ -12,14 +12,17 @@ class Person {
       }
       this._age = age
    }
+   public get age() {
+      if (this._age === undefined) {
+         throw new Error('The age property has not been set');
+      }
+      return this._age;
+   }
 }
 
 const person: Person = new Person("John");
-
-const mark: Person = new Person("Mark");
-
+person.age = 70;
 
 
 //person.name = "Mark"; //modifies the name of the person "John" to "Mark"
-console.log(person);
-console.log(mark)
+console.log(person.age);
