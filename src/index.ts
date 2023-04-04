@@ -1,24 +1,25 @@
-//Access modifiers in classes (
-   //public(can be used outside the class), 
-   //protected(can be  accessed within the class and child class alone), 
-   //private(can only be accessed within the parent class itself alone.)
-   //)
+//Introduction to Accessors and Mutators (the 'getters' and 'setters')
 class Person {
-   constructor(protected name: string, public age: number) {}
+   private _age: number | undefined;
+   constructor(protected name: string) {
+}
    public getName(){
       return this.name;
    }
-}
-
-class Admin extends Person {
-   public returnName(){
-      return this.name;
+   public set age(age: number) {
+      if(age > 200 || age < 0){
+         throw new Error('The age must be within range of 0 and 200')
+      }
+      this._age = age
    }
 }
 
-const admin: Admin = new Admin("Mark", 42);
+const person: Person = new Person("John");
 
-let person : Person = new Person("John", 32);
+const mark: Person = new Person("Mark");
+
+
+
 //person.name = "Mark"; //modifies the name of the person "John" to "Mark"
 console.log(person);
-console.log(admin.returnName())
+console.log(mark)
