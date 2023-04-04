@@ -1,17 +1,32 @@
-const map = <T, U>(array: T[], func: (item: T) => U)=>{
-   if(array.length === 0) {
-      return array;
+// let person = {
+//    name: 'John',
+//    email: 'john@example.com',
+//    greet: () => console.log(`Hello ${person.name}`),
+// };
+// console.log(`Hello ${person.name}`);
+
+//Creating instance of class
+class Person {
+   name: string;
+   email: string;
+//'this' keyword used in the classs refers to the class to make the properties available in the constructor as well.
+
+   constructor(name: string, email: string){
+      this.name = name;
+      this.email = email;
+      // console.log("name: " + this.name);
+      // console.log("email: " + this.email);
    }
-   let result =[];
-
-   for(let i = 0; i < array.length; i++) {
-      result[i] = func(array[i]);
+   greet() {
+      return `Hello ${this.name}`;
    }
-   return result;
-};
+}
 
-let numbers = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+const person = new Person('John', 'john@email.com');
+const person2 = new Person('Mark', 'mark@email.com');
+console.log(person);
+console.log(person2);
 
-const converted  = map(numbers, (num)=> num.toString());
 
-console.log(converted)
+console.log(person.greet());
+console.log(person2.greet());
