@@ -23,8 +23,7 @@ class Person {
 }
 
 const person: Person = new Person("John");
-person.age = 70;
-
+person.age = 60;
 
 //person.name = "Mark"; //modifies the name of the person "John" to "Mark"
 console.log(person.age);
