@@ -1,12 +1,30 @@
-let OTP = '';
-function generateOTP() {
-   var digits = '0123456789'
-   
-   for(let i = 0; i < 6; i++) {
-      OTP +=digits[Math.floor(Math.random() * 10)];
+//Introduction to Accessors and Mutators (the 'getters' and 'setters')
+class Person {
+   private _age: number |undefined;
+   constructor(protected name: string) {
+}
+   public getName(){
+      return this.name;
    }
-   return OTP;
+   //Set method can only have one parameter
+   public set age(age: number) {
+      if(age > 200 || age < 0){
+         throw new Error('The age must be within range of 0 and 200')
+      }
+      this._age = age
+   }
+   //get accessors cannot have parameters
+   public get age() {
+      if (this._age === undefined) {
+         throw new Error('The age property has not been set');
+      }
+      return this._age;
+   }
 }
 
-generateOTP()
-console.log(OTP)
+const person: Person = new Person("John");
+person.age = 60;
+
+//person.name = "Mark"; //modifies the name of the person "John" to "Mark"
+console.log(person.age);
+console.log(person.getName());
