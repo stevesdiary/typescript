@@ -1,30 +1,29 @@
-//Introduction to Accessors and Mutators (the 'getters' and 'setters')
-class Person {
-   private _age: number |undefined;
-   constructor(protected name: string) {
-}
-   public getName(){
-      return this.name;
-   }
-   //Set method can only have one parameter
-   public set age(age: number) {
-      if(age > 200 || age < 0){
-         throw new Error('The age must be within range of 0 and 200')
+//Protected Constructor and Child Classes
+type Holidays = {
+   date: Date;
+   reason: string;
+}[];
+
+abstract class Department {
+   protected abstract holidays: Holidays;
+   protected constructor(protected name: string){}
+
+   public addHolidays(holidays: Holidays){
+      if (Array.isArray(holidays)){
+         for(const holiday of holidays){
+            this.holidays.push(holiday);
+         }
       }
-      this._age = age
-   }
-   //get accessors cannot have parameters
-   public get age() {
-      if (this._age === undefined) {
-         throw new Error('The age property has not been set');
-      }
-      return this._age;
    }
 }
 
-const person: Person = new Person("John");
-person.age = 60;
+class ItDepartment extends Department {
+   protected holidays: Holidays = [];
 
-//person.name = "Mark"; //modifies the name of the person "John" to "Mark"
-console.log(person.age);
-console.log(person.getName());
+   constructor(){
+      super("It Department");
+   }
+}
+class AdminHoliday extends Department {
+   protected holidays: Holidays = [];
+}
