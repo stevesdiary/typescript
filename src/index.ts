@@ -15,15 +15,74 @@ abstract class Department {
          }
       }
    }
+   public abstract printHolidays(): void;
 }
-
+//
 class ItDepartment extends Department {
    protected holidays: Holidays = [];
 
    constructor(){
-      super("It Department");
+      super("IT Department");
+   }
+   public printHolidays() {
+      if (this.holidays.length === 0) {
+         return console.log("There are no holdays")
+   }
+   console.log(`Here's the list of holidays ${this.name}`);
+
+   this.holidays.forEach((holiday, index)=>{
+      console.log(`${index +1}. ${holiday.reason}, ${holiday.date}`
+      );
+   });
+}
+
+class AdminDepartment extends Department {
+   protected holidays: Holidays = [];
+
+   constructor () {
+      super("Admin Department");
+   }
+   public printHolidays(){
+      if (this.holidays.length === 0) {
+         return console.log("There are no holidays")
+      }
+      console.log(
+         `Here's the list of holidays ${this.name}`
+         );
+         this.holidays.forEach((holiday, index )=> {
+         console.log(`${index + 1}. ${holiday.reason}, ${holiday.date}`
+         );
+      });
    }
 }
-class AdminHoliday extends Department {
-   protected holidays: Holidays = [];
-}
+
+const itHolidays: Holidays =[
+   {
+      date: new Date(2022, 11, 1),
+      reason: "IT Department Day"
+   },
+   {
+      date: new Date(2022, 12, 25),
+      reason: "Christmas"
+   }
+];
+
+const adminHolidays: Holidays =[
+   {
+      date: new Date(2022, 10, 1),
+      reason: "Admin Department Day"
+   },
+   {
+      date: new Date(2022, 12, 25),
+      reason: "Christmas"
+   },
+];
+
+const itDepartment: ItDepartment = new ItDepartment();
+const adminDepartment: AdminDepartment = new AdminDepartment();
+
+itDepartment.addHolidays(itHolidays);
+adminDepartment.addHolidays(adminHolidays);
+
+itDepartment.printHolidays();
+adminDepartment.printHolidays();
