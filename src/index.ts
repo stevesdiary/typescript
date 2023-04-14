@@ -6,9 +6,9 @@ const book = {
    },
    
    printAuthors(){
-      this.authors.forEach(function(author:string){
+      this.authors.forEach((author:string)=>{
          console.log(this.title, '-', author)
-      }, this)
+      })
    }
 }
 book.printAuthors()
